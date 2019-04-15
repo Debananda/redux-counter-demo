@@ -1,25 +1,48 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    counter: 0
+  };
+  increment = () => {
+    this.setState(prevState => ({
+      counter: prevState.counter + 1
+    }));
+  };
+  decrement = () => {
+    this.setState(prevState => ({
+      counter: prevState.counter - 1
+    }));
+  };
+  add = num => {
+    this.setState(prevState => ({
+      counter: prevState.counter + num
+    }));
+  };
+  subtract = num => {
+    this.setState(prevState => ({
+      counter: prevState.counter - num
+    }));
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ul className="actions">
+          <li>
+            <button onClick={this.increment}>Increment</button>
+          </li>
+          <li>
+            <button onClick={this.decrement}>Decrement</button>
+          </li>
+          <li>
+            <button onClick={this.add.bind(null, 10)}>Add</button>
+          </li>
+          <li>
+            <button onClick={this.subtract.bind(null, 5)}>Subtract</button>
+          </li>
+        </ul>
+        <h1>{`Counter : ${this.state.counter}`}</h1>
       </div>
     );
   }
