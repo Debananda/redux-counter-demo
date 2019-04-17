@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { INC, DEC, ADD, SUB } from "./store/actionTypes/counterActionTypes";
+// import { INC, DEC, ADD, SUB } from "./store/actionTypes/counterActionTypes";
+import {
+  handleAddition,
+  handleDecrement,
+  handleIncrement,
+  handleSubtraction
+} from "./store/actions/counterAction";
+import Posts from "./components/Posts";
 
 class App extends Component {
   // state = {
@@ -49,6 +56,7 @@ class App extends Component {
           </li>
         </ul>
         <h1>{`Counter : ${this.props.counter}`}</h1>
+        <Posts />
       </div>
     );
   }
@@ -60,14 +68,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    handleIncrement: () => dispatch({ type: INC }),
-    handleDecrement: () => dispatch({ type: DEC }),
-    handleAddition: val => dispatch({ type: ADD, payload: val }),
-    handleSubtraction: val => dispatch({ type: SUB, payload: val })
-  };
+const mapDispatchToProps = {
+  handleIncrement,
+  handleDecrement,
+  handleAddition,
+  handleSubtraction
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
